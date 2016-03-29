@@ -1,9 +1,12 @@
 package pollseed.util.list;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * List class Extension (for updating java7 to java8).
@@ -11,6 +14,8 @@ import java.util.Optional;
  * @version java8
  */
 public class ListEx {
+    private ListEx() {
+    }
 
     /**
      * To count the list removed by {@code excludes} list.
@@ -25,12 +30,19 @@ public class ListEx {
      * @since v0.1
      */
     public static <T> int size(final List<T> list, final List<T> excludes, final boolean isNotNull) {
-        return size(Optional.ofNullable(toNotNullList(list)).map(
+        return size(exclude(list, excludes, isNotNull));
+    }
+
+    private static <T> Optional<List<T>> exclude(
+            final List<T> list,
+            final List<T> excludes,
+            final boolean isNotNull) {
+        return Optional.ofNullable(toNotNullList(list)).map(
                 e -> {
                     Optional.ofNullable(excludes).ifPresent(
                             optionalExcludes -> optionalExcludes.forEach(exclude -> e.removeAll(Collections.singleton(exclude))));
                     return toNotNullElementsList(e, isNotNull);
-                }));
+                });
     }
 
     /**
@@ -83,5 +95,116 @@ public class ListEx {
      */
     public static <T> List<T> toNotNullList(final List<T> list) {
         return Optional.ofNullable(list).isPresent() ? new ArrayList<>(list) : new ArrayList<>();
+    }
+
+    /**
+     * This list, you can exclude the `string` of the specified {@code excludeStringPattern} at the
+     * time of `{@code add(Object),add(int, Object)}.`<br>
+     * <b>Other than the *1 method does not support. </b><br>
+     * <ul>
+     * *1
+     * <li>{@link ExcludeList#add(Object)}</li>
+     * <li>{@link ExcludeList#add(int, Object)}</li>
+     * <li>{@link ExcludeList#addAll(java.util.Collection)}</li>
+     * <li>{@link ExcludeList#addAll(int, java.util.Collection)}</li>
+     * <li>{@link ExcludeList#get(int)}</li>
+     * <li>{@link ExcludeList#size()}</li>
+     * </ul>
+     *
+     * @param <E>
+     *            specified class
+     */
+    public static class ExcludeList<E> extends AbstractList<E> {
+        final List<E> excludeList;
+        final Pattern excludeStringPattern;
+
+        /**
+         * Set list, pattern used to this constructor
+         * 
+         * @param list
+         *            the list is target
+         * @param p
+         *            pattern regex
+         */
+        public ExcludeList(final List<E> list, final Pattern p) {
+            excludeList = toNotNullList(list);
+            excludeStringPattern = p;
+        }
+
+        /**
+         * Inserts the specified element (exclude pattern string).
+         */
+        @Override
+        public boolean add(E e) {
+            if (isExcludeElement(e)) {
+                return false;
+            }
+            return excludeList.add(e);
+        }
+
+        /**
+         * Inserts the specified element at the specified position in this list (optional operation)
+         * (exclude pattern string)..
+         */
+        @Override
+        public void add(int index, E e) {
+            if (isExcludeElement(e)) {
+                return;
+            }
+            excludeList.add(index, e);
+        }
+
+        /**
+         * {@link AbstractList#addAll(Collection)} of (exclude pattern string)..
+         */
+        @Override
+        public boolean addAll(Collection<? extends E> c) {
+            boolean[] modified = new boolean[] { false };
+            c.forEach(e -> {
+                if (!isExcludeElement(e) && add(e))
+                    modified[0] = true;
+            });
+            return modified[0];
+        }
+
+        /**
+         * {@link AbstractList#addAll(int, Collection)} of (exclude pattern string)..
+         */
+        @Override
+        public boolean addAll(int index, Collection<? extends E> c) {
+            rangeCheckForAdd(index);
+            boolean[] modified = new boolean[] { false };
+            int[] indexBase = new int[] { index };
+            c.forEach(e -> {
+                if (!isExcludeElement(e)) {
+                    add(indexBase[0]++, e);
+                    modified[0] = true;
+                }
+            });
+            return modified[0];
+        }
+
+        private void rangeCheckForAdd(int index) {
+            if (index < 0 || index > size())
+                throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+        }
+
+        private String outOfBoundsMsg(int index) {
+            return "Index: " + index + ", Size: " + size();
+        }
+
+        private boolean isExcludeElement(E e) {
+            return e instanceof String && excludeStringPattern.matcher(e.toString()).find();
+        }
+
+        @Override
+        public E get(int index) {
+            return excludeList.get(index);
+        }
+
+        @Override
+        public int size() {
+            return excludeList.size();
+        }
     }
 }
