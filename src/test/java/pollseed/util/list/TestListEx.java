@@ -1,4 +1,4 @@
-package util.list;
+package pollseed.util.list;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
