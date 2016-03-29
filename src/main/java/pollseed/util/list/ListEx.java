@@ -24,16 +24,13 @@ public class ListEx {
      * @return size of target list
      * @since v0.1
      */
-    public static <T> int countList(
-            final List<T> list,
-            final List<T> excludes,
-            final boolean isNotNull) {
-        return Optional.ofNullable(toNotNullList(list)).map(
+    public static <T> int size(final List<T> list, final List<T> excludes, final boolean isNotNull) {
+        return size(Optional.ofNullable(toNotNullList(list)).map(
                 e -> {
                     Optional.ofNullable(excludes).ifPresent(
                             optionalExcludes -> optionalExcludes.forEach(exclude -> e.removeAll(Collections.singleton(exclude))));
                     return toNotNullElementsList(e, isNotNull);
-                }).get().size();
+                }));
     }
 
     /**
@@ -46,9 +43,13 @@ public class ListEx {
      * @return size of target list
      * @since v0.1
      */
-    public static <T> int countList(final List<T> list, final boolean isNotNull) {
-        return Optional.ofNullable(toNotNullList(list)).map(
-                e -> toNotNullElementsList(e, isNotNull)).get().size();
+    public static <T> int size(final List<T> list, final boolean isNotNull) {
+        return size(Optional.ofNullable(toNotNullList(list)).map(
+                e -> toNotNullElementsList(e, isNotNull)));
+    }
+
+    private static <T> int size(final Optional<List<T>> optional) {
+        return optional.isPresent() ? optional.get().size() : 0;
     }
 
     private static <T> List<T> toNotNullElementsList(final List<T> list, final boolean isNotNull) {
