@@ -1,6 +1,7 @@
 package util.list;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.isA;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class TestListEx extends TestCase {
             ""));
 
     @Test
-    public void test() {
+    public void test_countList1() {
         assertThat(ListEx.countList(LIST, null, false), is(5));
         assertThat(ListEx.countList(LIST, null, true), is(4));
         assertThat(ListEx.countList(LIST, Arrays.asList("hoge"), false), is(4));
@@ -41,5 +42,24 @@ public class TestListEx extends TestCase {
         assertThat(ListEx.countList(LIST, Arrays.asList(""), true), is(3));
         assertThat(ListEx.countList(LIST, Arrays.asList("", null), false), is(3));
         assertThat(ListEx.countList(null, null, false), is(0));
+    }
+
+    @Test
+    public void test_countList2() {
+        assertThat(ListEx.countList(LIST, false), is(5));
+        assertThat(ListEx.countList(LIST, true), is(4));
+    }
+
+    @Test
+    public void test_toNotNullElementsList() {
+        assertThat(
+                ListEx.toNotNullElementsList(LIST),
+                is(Arrays.asList("hoge", "fuga", "piyo", "")));
+    }
+
+    @Test
+    public void test_toNotNullList() {
+        assertThat(ListEx.toNotNullList(LIST), is(LIST));
+        assertThat(ListEx.toNotNullList(null), isA(List.class));
     }
 }
