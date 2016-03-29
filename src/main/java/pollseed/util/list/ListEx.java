@@ -63,7 +63,8 @@ public class ListEx {
      * 
      * @param list
      *            {@code List<T>} target list
-     * @return
+     * @return {@code NULL} elements {@code List<T>}
+     * @since v0.1
      */
     public static <T> List<T> toNotNullElementsList(final List<T> list) {
         final List<T> tmp = toNotNullList(list);
@@ -77,6 +78,7 @@ public class ListEx {
      * @param list
      *            {@code List<T>} target list
      * @return {@code Not Null List<T>}
+     * @since v0.1
      */
     public static <T> List<T> toNotNullList(final List<T> list) {
         return Optional.ofNullable(list).isPresent() ? new ArrayList<>(list) : new ArrayList<>();
