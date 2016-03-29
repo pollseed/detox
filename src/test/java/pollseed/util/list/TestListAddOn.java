@@ -13,14 +13,14 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import util.list.ListEx.ExcludeList;
+import util.list.ListAddOn.ExcludeList;
 
 /**
- * {@link ListEx} is test class.
+ * {@link ListAddOn} is test class.
  * 
  * @since v0.1
  */
-public class TestListEx extends TestCase {
+public class TestListAddOn extends TestCase {
     private static List<String> newList() {
         return new ArrayList<>(Arrays.asList(
                 "hoge",
@@ -32,40 +32,40 @@ public class TestListEx extends TestCase {
 
     @Test
     public void test_size_excludes() {
-        assertThat(ListEx.size(newList(), null, false), is(5));
-        assertThat(ListEx.size(newList(), null, true), is(4));
-        assertThat(ListEx.size(newList(), Arrays.asList("hoge"), false), is(4));
-        assertThat(ListEx.size(newList(), Arrays.asList("hoge", "fuga"), false), is(3));
-        assertThat(ListEx.size(newList(), Arrays.asList("hoge", "fuga", "piyo"), true), is(1));
+        assertThat(ListAddOn.size(newList(), null, false), is(5));
+        assertThat(ListAddOn.size(newList(), null, true), is(4));
+        assertThat(ListAddOn.size(newList(), Arrays.asList("hoge"), false), is(4));
+        assertThat(ListAddOn.size(newList(), Arrays.asList("hoge", "fuga"), false), is(3));
+        assertThat(ListAddOn.size(newList(), Arrays.asList("hoge", "fuga", "piyo"), true), is(1));
         assertThat(
-                ListEx.size(newList(), Arrays.asList("hoge", "fuga", "piyo", ""), true),
+                ListAddOn.size(newList(), Arrays.asList("hoge", "fuga", "piyo", ""), true),
                 is(0));
         assertThat(
-                ListEx.size(newList(), Arrays.asList("hoge", "fuga", "piyo", null), false),
+                ListAddOn.size(newList(), Arrays.asList("hoge", "fuga", "piyo", null), false),
                 is(1));
-        assertThat(ListEx.size(newList(), Arrays.asList(""), false), is(4));
-        assertThat(ListEx.size(newList(), Arrays.asList(""), true), is(3));
-        assertThat(ListEx.size(newList(), Arrays.asList("", null), false), is(3));
-        assertThat(ListEx.size(null, null, false), is(0));
+        assertThat(ListAddOn.size(newList(), Arrays.asList(""), false), is(4));
+        assertThat(ListAddOn.size(newList(), Arrays.asList(""), true), is(3));
+        assertThat(ListAddOn.size(newList(), Arrays.asList("", null), false), is(3));
+        assertThat(ListAddOn.size(null, null, false), is(0));
     }
 
     @Test
     public void test_size() {
-        assertThat(ListEx.size(newList(), false), is(5));
-        assertThat(ListEx.size(newList(), true), is(4));
+        assertThat(ListAddOn.size(newList(), false), is(5));
+        assertThat(ListAddOn.size(newList(), true), is(4));
     }
 
     @Test
     public void test_toNotNullElementsList() {
         assertThat(
-                ListEx.toNotNullElementsList(newList()),
+                ListAddOn.toNotNullElementsList(newList()),
                 is(Arrays.asList("hoge", "fuga", "piyo", "")));
     }
 
     @Test
     public void test_toNotNullList() {
-        assertThat(ListEx.toNotNullList(newList()), is(newList()));
-        assertThat(ListEx.toNotNullList(null), isA(List.class));
+        assertThat(ListAddOn.toNotNullList(newList()), is(newList()));
+        assertThat(ListAddOn.toNotNullList(null), isA(List.class));
     }
 
     @Test
