@@ -26,28 +26,28 @@ public class TestListEx extends TestCase {
             ""));
 
     @Test
-    public void test_countList1() {
-        assertThat(ListEx.countList(LIST, null, false), is(5));
-        assertThat(ListEx.countList(LIST, null, true), is(4));
-        assertThat(ListEx.countList(LIST, Arrays.asList("hoge"), false), is(4));
-        assertThat(ListEx.countList(LIST, Arrays.asList("hoge", "fuga"), false), is(3));
-        assertThat(ListEx.countList(LIST, Arrays.asList("hoge", "fuga", "piyo"), true), is(1));
+    public void test_size_excludes() {
+        assertThat(ListEx.size(LIST, null, false), is(5));
+        assertThat(ListEx.size(LIST, null, true), is(4));
+        assertThat(ListEx.size(LIST, Arrays.asList("hoge"), false), is(4));
+        assertThat(ListEx.size(LIST, Arrays.asList("hoge", "fuga"), false), is(3));
+        assertThat(ListEx.size(LIST, Arrays.asList("hoge", "fuga", "piyo"), true), is(1));
         assertThat(
-                ListEx.countList(LIST, Arrays.asList("hoge", "fuga", "piyo", ""), true),
+                ListEx.size(LIST, Arrays.asList("hoge", "fuga", "piyo", ""), true),
                 is(0));
         assertThat(
-                ListEx.countList(LIST, Arrays.asList("hoge", "fuga", "piyo", null), false),
+                ListEx.size(LIST, Arrays.asList("hoge", "fuga", "piyo", null), false),
                 is(1));
-        assertThat(ListEx.countList(LIST, Arrays.asList(""), false), is(4));
-        assertThat(ListEx.countList(LIST, Arrays.asList(""), true), is(3));
-        assertThat(ListEx.countList(LIST, Arrays.asList("", null), false), is(3));
-        assertThat(ListEx.countList(null, null, false), is(0));
+        assertThat(ListEx.size(LIST, Arrays.asList(""), false), is(4));
+        assertThat(ListEx.size(LIST, Arrays.asList(""), true), is(3));
+        assertThat(ListEx.size(LIST, Arrays.asList("", null), false), is(3));
+        assertThat(ListEx.size(null, null, false), is(0));
     }
 
     @Test
-    public void test_countList2() {
-        assertThat(ListEx.countList(LIST, false), is(5));
-        assertThat(ListEx.countList(LIST, true), is(4));
+    public void test_size() {
+        assertThat(ListEx.size(LIST, false), is(5));
+        assertThat(ListEx.size(LIST, true), is(4));
     }
 
     @Test
