@@ -69,8 +69,9 @@ public class TestListEx extends TestCase {
     }
 
     @Test
-    public void test_hoge() {
-        ExcludeList<String> list = new ExcludeList<>(newList(), Pattern.compile("^(test1|test2)$"));
+    public void test_ExcludeList() {
+        final ExcludeList<String> list =
+                new ExcludeList<>(newList(), Pattern.compile("^(test1|test2)$"));
         assertThat(list.add("test"), is(true));
         assertThat(list, is(Arrays.asList("hoge", "fuga", "piyo", null, "", "test")));
         assertThat(list.add("test2"), is(false));
