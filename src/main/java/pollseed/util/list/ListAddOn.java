@@ -1,5 +1,6 @@
 package pollseed.util.list;
 
+import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,8 +14,8 @@ import java.util.regex.Pattern;
  * 
  * @version java8
  */
-public class ListEx {
-    private ListEx() {
+public class ListAddOn {
+    private ListAddOn() {
     }
 
     /**
@@ -115,7 +116,8 @@ public class ListEx {
      *            specified class
      * @since v0.1
      */
-    public static class ExcludeList<E> extends AbstractList<E> {
+    public static class ExcludeList<E> extends AbstractList<E> implements List<E>, Serializable {
+        private static final long serialVersionUID = 6383432581122292657L;
         final List<E> excludeList;
         final Pattern excludeStringPattern;
 
