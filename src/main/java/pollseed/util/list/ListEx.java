@@ -113,6 +113,7 @@ public class ListEx {
      *
      * @param <E>
      *            specified class
+     * @since v0.1
      */
     public static class ExcludeList<E> extends AbstractList<E> {
         final List<E> excludeList;
@@ -125,6 +126,7 @@ public class ListEx {
          *            the list is target
          * @param p
          *            pattern regex
+         * @since v0.1
          */
         public ExcludeList(final List<E> list, final Pattern p) {
             excludeList = toNotNullList(list);
@@ -133,9 +135,11 @@ public class ListEx {
 
         /**
          * Inserts the specified element (exclude pattern string).
+         * 
+         * @since v0.1
          */
         @Override
-        public boolean add(E e) {
+        public boolean add(final E e) {
             if (isExcludeElement(e)) {
                 return false;
             }
@@ -144,10 +148,12 @@ public class ListEx {
 
         /**
          * Inserts the specified element at the specified position in this list (optional operation)
-         * (exclude pattern string)..
+         * (exclude pattern string).
+         * 
+         * @since v0.1
          */
         @Override
-        public void add(int index, E e) {
+        public void add(final int index, final E e) {
             if (isExcludeElement(e)) {
                 return;
             }
@@ -155,11 +161,13 @@ public class ListEx {
         }
 
         /**
-         * {@link AbstractList#addAll(Collection)} of (exclude pattern string)..
+         * {@link AbstractList#addAll(Collection)} of (exclude pattern string).
+         * 
+         * @since v0.1
          */
         @Override
-        public boolean addAll(Collection<? extends E> c) {
-            boolean[] modified = new boolean[] { false };
+        public boolean addAll(final Collection<? extends E> c) {
+            final boolean[] modified = new boolean[] { false };
             c.forEach(e -> {
                 if (!isExcludeElement(e) && add(e))
                     modified[0] = true;
@@ -168,13 +176,15 @@ public class ListEx {
         }
 
         /**
-         * {@link AbstractList#addAll(int, Collection)} of (exclude pattern string)..
+         * {@link AbstractList#addAll(int, Collection)} of (exclude pattern string).
+         * 
+         * @since v0.1
          */
         @Override
-        public boolean addAll(int index, Collection<? extends E> c) {
+        public boolean addAll(final int index, final Collection<? extends E> c) {
             rangeCheckForAdd(index);
-            boolean[] modified = new boolean[] { false };
-            int[] indexBase = new int[] { index };
+            final boolean[] modified = new boolean[] { false };
+            final int[] indexBase = new int[] { index };
             c.forEach(e -> {
                 if (!isExcludeElement(e)) {
                     add(indexBase[0]++, e);
@@ -184,21 +194,21 @@ public class ListEx {
             return modified[0];
         }
 
-        private void rangeCheckForAdd(int index) {
+        private void rangeCheckForAdd(final int index) {
             if (index < 0 || index > size())
                 throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
         }
 
-        private String outOfBoundsMsg(int index) {
+        private String outOfBoundsMsg(final int index) {
             return "Index: " + index + ", Size: " + size();
         }
 
-        private boolean isExcludeElement(E e) {
+        private boolean isExcludeElement(final E e) {
             return e instanceof String && excludeStringPattern.matcher(e.toString()).find();
         }
 
         @Override
-        public E get(int index) {
+        public E get(final int index) {
             return excludeList.get(index);
         }
 
