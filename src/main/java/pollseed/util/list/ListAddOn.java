@@ -3,9 +3,12 @@ package pollseed.util.list;
 import java.io.Serializable;
 import java.util.AbstractList;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -116,7 +119,9 @@ public class ListAddOn {
      *            specified class
      * @since v0.1
      */
-    public static class ExcludeList<E> extends AbstractList<E> implements List<E>, Serializable {
+    public static class ExcludeList<E>
+            extends AbstractList<E>
+            implements List<E>, Serializable {
         private static final long serialVersionUID = 6383432581122292657L;
         final List<E> excludeList;
         final Pattern excludeStringPattern;
@@ -217,6 +222,120 @@ public class ListAddOn {
         @Override
         public int size() {
             return excludeList.size();
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return excludeList.size() == 0;
+        }
+
+        @Override
+        public boolean contains(final Object o) {
+            return indexOf(o) >= 0;
+        }
+
+        @Deprecated
+        @Override
+        public Iterator<E> iterator() {
+            return null;
+        }
+
+        @Override
+        public Object[] toArray() {
+            return Arrays.copyOf(excludeList.toArray(), excludeList.size());
+        }
+
+        @Override
+        public <T> T[] toArray(final T[] a) {
+            if (a.length < excludeList.size()) {
+                @SuppressWarnings("unchecked")
+                final T[] copyOf =
+                        (T[]) Arrays.copyOf(excludeList.toArray(), excludeList.size(), a.getClass());
+                return copyOf;
+            }
+            System.arraycopy(excludeList.toArray(), 0, a, 0, excludeList.size());
+            if (a.length > excludeList.size())
+                a[excludeList.size()] = null;
+            return a;
+        }
+
+        @Deprecated
+        @Override
+        public boolean remove(final Object o) {
+            return false;
+        }
+
+        @Deprecated
+        @Override
+        public boolean containsAll(final Collection<?> c) {
+            return false;
+        }
+
+        @Deprecated
+        @Override
+        public boolean removeAll(final Collection<?> c) {
+            return false;
+        }
+
+        @Deprecated
+        @Override
+        public boolean retainAll(final Collection<?> c) {
+            return false;
+        }
+
+        @Deprecated
+        @Override
+        public void clear() {
+        }
+
+        @Deprecated
+        @Override
+        public E set(final int index, final E element) {
+            return null;
+        }
+
+        @Deprecated
+        @Override
+        public E remove(final int index) {
+            return null;
+        }
+
+        @Override
+        public int indexOf(final Object o) {
+            if (o == null) {
+                for (int i = 0; i < excludeList.size(); i++)
+                    if (excludeList.get(i) == null)
+                        return i;
+            } else {
+                for (int i = 0; i < excludeList.size(); i++)
+                    if (o.equals(excludeList.get(i)))
+                        return i;
+            }
+            return -1;
+        }
+
+        @Deprecated
+        @Override
+        public int lastIndexOf(final Object o) {
+            return 0;
+        }
+
+        @Deprecated
+        @Override
+        public ListIterator<E> listIterator() {
+            return null;
+        }
+
+        @Deprecated
+        @Override
+        public ListIterator<E> listIterator(final int index) {
+            return null;
+        }
+
+        @Deprecated
+        @Override
+        public List<E> subList(final int fromIndex, final int toIndex) {
+            return null;
         }
     }
 }
