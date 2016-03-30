@@ -1,4 +1,4 @@
-package pollseed.util.list;
+package pollseed.util;
 
 import java.io.Serializable;
 import java.util.AbstractList;
