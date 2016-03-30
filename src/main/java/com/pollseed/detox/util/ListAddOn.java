@@ -1,4 +1,4 @@
-package pollseed.util;
+package com.pollseed.detox.util;
 
 import java.io.Serializable;
 import java.util.AbstractList;
