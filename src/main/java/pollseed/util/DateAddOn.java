@@ -177,15 +177,4 @@ public class DateAddOn implements Serializable {
             this.value = value;
         }
     }
-
-    public static void main(final String[] args) {
-        final Date now = now();
-        final ZonedDateTime zonedDateTime = toZonedDateTime(now);
-        final DateTime dateTime = toDateTime(zonedDateTime);
-        final Date date = toDate(toZonedDateTime(dateTime));
-        System.out.println(date);
-        System.out.println(format(toZonedDateTime(date), DateFormat.SLASH_HMS));
-        System.out.println(format(date, DateFormat.HYPHEN_HMS));
-        System.out.println(format("2014/10/24", DateFormat.SLASH));
-    }
 }
