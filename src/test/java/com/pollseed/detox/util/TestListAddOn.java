@@ -1,4 +1,4 @@
-package pollseed.util;
+package com.pollseed.detox.util;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.isA;
