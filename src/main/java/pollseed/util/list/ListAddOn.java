@@ -113,6 +113,11 @@ public class ListAddOn {
      * <li>{@link ExcludeList#addAll(int, java.util.Collection)}</li>
      * <li>{@link ExcludeList#get(int)}</li>
      * <li>{@link ExcludeList#size()}</li>
+     * <li>{@link ExcludeList#contains(Object)}</li>
+     * <li>{@link ExcludeList#indexOf(Object)}</li>
+     * <li>{@link ExcludeList#isEmpty()}</li>
+     * <li>{@link ExcludeList#toArray()}</li>
+     * <li>{@link ExcludeList#toArray(Object[])}</li>
      * </ul>
      *
      * @param <E>
