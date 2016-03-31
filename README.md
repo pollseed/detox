@@ -5,4 +5,4 @@ class Extension for updating java 7 to java8
 Java 1.8.*
 
 ## dependencies library
-none
+[pom.xml](https://github.com/pollseed/detox/blob/master/pom.xml)
