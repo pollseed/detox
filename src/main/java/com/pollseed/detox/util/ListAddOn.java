@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 /**
  * List class Extension (for updating java7 to java8).
  *
+ * @author pollseed
  * @version java8
  */
 public class ListAddOn {
@@ -27,6 +28,7 @@ public class ListAddOn {
      * @param list      {@code List<T>} target list
      * @param excludes  {@code List<T>} Removing excludes list
      * @param isNotNull {@code true} if {@code NOT NULL (target list) }
+     * @param <T>       type
      * @return size of target list
      * @since v0.1
      */
@@ -51,6 +53,7 @@ public class ListAddOn {
      *
      * @param list      {@code List<T>} target list
      * @param isNotNull {@code true} if NOT NULL (target list)
+     * @param <T>       type
      * @return size of target list
      * @since v0.1
      */
@@ -74,6 +77,7 @@ public class ListAddOn {
      * To get the list remove {@code NULL} elements.
      *
      * @param list {@code List<T>} target list
+     * @param <T>  type
      * @return {@code NULL} elements {@code List<T>}
      * @since v0.1
      */
@@ -87,6 +91,7 @@ public class ListAddOn {
      * To get the {@code Not Null List<T>}
      *
      * @param list {@code List<T>} target list
+     * @param <T>  type
      * @return {@code Not Null List<T>}
      * @since v0.1
      */
@@ -97,9 +102,8 @@ public class ListAddOn {
     /**
      * This list, you can exclude the `string` of the specified {@code excludeStringPattern} at the
      * time of `{@code add(Object),add(int, Object)}.`<br>
-     * <b>Other than the *1 method does not support. </b><br>
+     * <b>Other than the 1 method does not support. </b><br>
      * <ul>
-     * *1
      * <li>{@link ExcludeList#add(Object)}</li>
      * <li>{@link ExcludeList#add(int, Object)}</li>
      * <li>{@link ExcludeList#addAll(java.util.Collection)}</li>

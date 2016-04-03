@@ -10,6 +10,11 @@ import java.util.Optional;
 
 import org.joda.time.DateTime;
 
+/**
+ * Date Add ON
+ *
+ * @author pollseed
+ */
 public class DateAddOn implements Serializable {
     private static final long serialVersionUID = 1674067964754938905L;
 

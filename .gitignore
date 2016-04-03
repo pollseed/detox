@@ -14,3 +14,9 @@ hs_err_pid*
 .idea/*
 
 *.iml
+
+target/classes
+target/generated*
+target/maven*
+target/surefire*
+target/test-classes

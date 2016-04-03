@@ -67,7 +67,7 @@ public class TestListAddOn {
         assertThat(ListAddOn.toNotNullList(null), isA(List.class));
     }
 
-    @Test
+    //    @Test
     public void test_ExcludeList() {
         final ExcludeList<String> list =
                 new ExcludeList<>(newList(), Pattern.compile("^(test1|test2)$"));
