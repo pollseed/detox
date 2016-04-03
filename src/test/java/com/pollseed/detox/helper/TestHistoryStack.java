@@ -2,13 +2,11 @@ package com.pollseed.detox.helper;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import junit.framework.TestCase;
 
 import org.junit.Test;
 
-import util.HistoryStack;
 
-public class TestHistoryStack extends TestCase {
+public class TestHistoryStack {
 
     @Test
     public void test() {

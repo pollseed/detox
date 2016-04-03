@@ -18,7 +18,7 @@ public class DateAddOn implements Serializable {
 
     /**
      * now date of "Date" type
-     * 
+     *
      * @return now date
      */
     public static Date now() {
@@ -27,7 +27,7 @@ public class DateAddOn implements Serializable {
 
     /**
      * now date of "DateTime" type
-     * 
+     *
      * @return now date
      */
     public static DateTime nowDateTime() {
@@ -36,7 +36,7 @@ public class DateAddOn implements Serializable {
 
     /**
      * now date of "ZonedDateTime" type
-     * 
+     *
      * @return now date
      */
     public static ZonedDateTime nowZonedDateTime() {
@@ -46,9 +46,8 @@ public class DateAddOn implements Serializable {
     /**
      * Parse from "Date" type to "ZonedDateTime" type. If "Date" is NULL, use
      * {@link DateAddOn#now()}.
-     * 
-     * @param date
-     *            "Date" type
+     *
+     * @param date "Date" type
      * @return "ZonedDateTime" type
      */
     public static ZonedDateTime toZonedDateTime(final Date date) {
@@ -69,9 +68,8 @@ public class DateAddOn implements Serializable {
 
     /**
      * Parse from "DateTime" type to "ZonedDateTime" type.
-     * 
-     * @param dateTime
-     *            "DateTime" type
+     *
+     * @param dateTime "DateTime" type
      * @return "ZonedDateTime" type
      */
     public static ZonedDateTime toZonedDateTime(final DateTime dateTime) {
@@ -80,9 +78,8 @@ public class DateAddOn implements Serializable {
 
     /**
      * Parse from "ZonedDateTime" type to "Date" type.
-     * 
-     * @param zonedDateTime
-     *            "ZonedDateTime" type
+     *
+     * @param zonedDateTime "ZonedDateTime" type
      * @return "Date" type
      */
     public static Date toDate(final ZonedDateTime zonedDateTime) {
@@ -95,9 +92,8 @@ public class DateAddOn implements Serializable {
 
     /**
      * Parse from "ZonedDateTime" type to "DateTime" type.
-     * 
-     * @param zonedDateTime
-     *            "ZonedDateTime" type
+     *
+     * @param zonedDateTime "ZonedDateTime" type
      * @return "DateTime" type
      */
     public static DateTime toDateTime(final ZonedDateTime zonedDateTime) {
@@ -106,11 +102,9 @@ public class DateAddOn implements Serializable {
 
     /**
      * Format from "Date" type to "String" type by {@link DateFormat}.
-     * 
-     * @param date
-     *            "Date" type
-     * @param dateFormat
-     *            {@link DateFormat} return type
+     *
+     * @param date       "Date" type
+     * @param dateFormat {@link DateFormat} return type
      * @return parsed {@link DateFormat}
      */
     public static String format(final Date date, final DateFormat dateFormat) {
@@ -119,11 +113,9 @@ public class DateAddOn implements Serializable {
 
     /**
      * Format from "DateTime" type to "String" type by {@link DateFormat}.
-     * 
-     * @param dateTime
-     *            "DateTime" type
-     * @param dateFormat
-     *            {@link DateFormat} return type
+     *
+     * @param dateTime   "DateTime" type
+     * @param dateFormat {@link DateFormat} return type
      * @return parsed {@link DateFormat}
      */
     public static String format(final DateTime dateTime, final DateFormat dateFormat) {
@@ -132,11 +124,9 @@ public class DateAddOn implements Serializable {
 
     /**
      * Format from "ZonedDateTime" type to "String" type by {@link DateFormat}.
-     * 
-     * @param zonedDateTime
-     *            "ZonedDateTime" type
-     * @param dateFormat
-     *            {@link DateFormat} return type
+     *
+     * @param zonedDateTime "ZonedDateTime" type
+     * @param dateFormat    {@link DateFormat} return type
      * @return parsed {@link DateFormat}
      */
     public static String format(final ZonedDateTime zonedDateTime, final DateFormat dateFormat) {
@@ -149,11 +139,9 @@ public class DateAddOn implements Serializable {
 
     /**
      * Parse from "String" type to "LocalDate" type.
-     * 
-     * @param str
-     *            specific date string
-     * @param dateFormat
-     *            "DateFormat" of specific date string
+     *
+     * @param str        specific date string
+     * @param dateFormat "DateFormat" of specific date string
      * @return "LocalDate" type
      */
     public static LocalDate format(final String str, final DateFormat dateFormat) {
@@ -170,7 +158,7 @@ public class DateAddOn implements Serializable {
         HYPHEN("yyyy-MM-dd"),
         HYPHEN_HMS("yyyy-MM-dd HH:mm:ss"),
         SPACE("yyyy MM dd"),
-        SPACE_HMS("yyyy MM dd HH:mm:ss"), ;
+        SPACE_HMS("yyyy MM dd HH:mm:ss"),;
         String value;
 
         DateFormat(final String value) {

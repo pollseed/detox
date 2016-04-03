@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 
 /**
  * List class Extension (for updating java7 to java8).
- * 
+ *
  * @version java8
  */
 public class ListAddOn {
@@ -23,13 +23,10 @@ public class ListAddOn {
 
     /**
      * To count the list removed by {@code excludes} list.
-     * 
-     * @param list
-     *            {@code List<T>} target list
-     * @param excludes
-     *            {@code List<T>} Removing excludes list
-     * @param isNotNull
-     *            {@code true} if {@code NOT NULL (target list) }
+     *
+     * @param list      {@code List<T>} target list
+     * @param excludes  {@code List<T>} Removing excludes list
+     * @param isNotNull {@code true} if {@code NOT NULL (target list) }
      * @return size of target list
      * @since v0.1
      */
@@ -51,11 +48,9 @@ public class ListAddOn {
 
     /**
      * To count the list.
-     * 
-     * @param list
-     *            {@code List<T>} target list
-     * @param isNotNull
-     *            {@code true} if NOT NULL (target list)
+     *
+     * @param list      {@code List<T>} target list
+     * @param isNotNull {@code true} if NOT NULL (target list)
      * @return size of target list
      * @since v0.1
      */
@@ -77,9 +72,8 @@ public class ListAddOn {
 
     /**
      * To get the list remove {@code NULL} elements.
-     * 
-     * @param list
-     *            {@code List<T>} target list
+     *
+     * @param list {@code List<T>} target list
      * @return {@code NULL} elements {@code List<T>}
      * @since v0.1
      */
@@ -91,9 +85,8 @@ public class ListAddOn {
 
     /**
      * To get the {@code Not Null List<T>}
-     * 
-     * @param list
-     *            {@code List<T>} target list
+     *
+     * @param list {@code List<T>} target list
      * @return {@code Not Null List<T>}
      * @since v0.1
      */
@@ -120,8 +113,7 @@ public class ListAddOn {
      * <li>{@link ExcludeList#toArray(Object[])}</li>
      * </ul>
      *
-     * @param <E>
-     *            specified class
+     * @param <E> specified class
      * @since v0.1
      */
     public static class ExcludeList<E>
@@ -133,11 +125,9 @@ public class ListAddOn {
 
         /**
          * Set list, pattern used to this constructor
-         * 
-         * @param list
-         *            the list is target
-         * @param p
-         *            pattern regex
+         *
+         * @param list the list is target
+         * @param p    pattern regex
          * @since v0.1
          */
         public ExcludeList(final List<E> list, final Pattern p) {
@@ -147,21 +137,18 @@ public class ListAddOn {
 
         /**
          * Inserts the specified element (exclude pattern string).
-         * 
+         *
          * @since v0.1
          */
         @Override
         public boolean add(final E e) {
-            if (isExcludeElement(e)) {
-                return false;
-            }
-            return excludeList.add(e);
+            return !isExcludeElement(e) && excludeList.add(e);
         }
 
         /**
          * Inserts the specified element at the specified position in this list (optional operation)
          * (exclude pattern string).
-         * 
+         *
          * @since v0.1
          */
         @Override
@@ -174,12 +161,12 @@ public class ListAddOn {
 
         /**
          * {@link AbstractList#addAll(Collection)} of (exclude pattern string).
-         * 
+         *
          * @since v0.1
          */
         @Override
         public boolean addAll(final Collection<? extends E> c) {
-            final boolean[] modified = new boolean[] { false };
+            final boolean[] modified = new boolean[]{false};
             c.forEach(e -> {
                 if (!isExcludeElement(e) && add(e))
                     modified[0] = true;
@@ -189,14 +176,14 @@ public class ListAddOn {
 
         /**
          * {@link AbstractList#addAll(int, Collection)} of (exclude pattern string).
-         * 
+         *
          * @since v0.1
          */
         @Override
         public boolean addAll(final int index, final Collection<? extends E> c) {
             rangeCheckForAdd(index);
-            final boolean[] modified = new boolean[] { false };
-            final int[] indexBase = new int[] { index };
+            final boolean[] modified = new boolean[]{false};
+            final int[] indexBase = new int[]{index};
             c.forEach(e -> {
                 if (!isExcludeElement(e)) {
                     add(indexBase[0]++, e);

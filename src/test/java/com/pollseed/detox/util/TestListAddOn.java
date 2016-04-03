@@ -6,21 +6,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import junit.framework.TestCase;
-
 import org.junit.Test;
 
-import util.list.ListAddOn.ExcludeList;
+import com.pollseed.detox.util.ListAddOn.ExcludeList;
 
 /**
  * {@link ListAddOn} is test class.
- * 
+ *
  * @since v0.1
  */
-public class TestListAddOn extends TestCase {
+public class TestListAddOn {
     private static List<String> newList() {
         return new ArrayList<>(Arrays.asList(
                 "hoge",
@@ -34,7 +33,7 @@ public class TestListAddOn extends TestCase {
     public void test_size_excludes() {
         assertThat(ListAddOn.size(newList(), null, false), is(5));
         assertThat(ListAddOn.size(newList(), null, true), is(4));
-        assertThat(ListAddOn.size(newList(), Arrays.asList("hoge"), false), is(4));
+        assertThat(ListAddOn.size(newList(), Collections.singletonList("hoge"), false), is(4));
         assertThat(ListAddOn.size(newList(), Arrays.asList("hoge", "fuga"), false), is(3));
         assertThat(ListAddOn.size(newList(), Arrays.asList("hoge", "fuga", "piyo"), true), is(1));
         assertThat(
@@ -43,8 +42,8 @@ public class TestListAddOn extends TestCase {
         assertThat(
                 ListAddOn.size(newList(), Arrays.asList("hoge", "fuga", "piyo", null), false),
                 is(1));
-        assertThat(ListAddOn.size(newList(), Arrays.asList(""), false), is(4));
-        assertThat(ListAddOn.size(newList(), Arrays.asList(""), true), is(3));
+        assertThat(ListAddOn.size(newList(), Collections.singletonList(""), false), is(4));
+        assertThat(ListAddOn.size(newList(), Collections.singletonList(""), true), is(3));
         assertThat(ListAddOn.size(newList(), Arrays.asList("", null), false), is(3));
         assertThat(ListAddOn.size(null, null, false), is(0));
     }
@@ -92,7 +91,7 @@ public class TestListAddOn extends TestCase {
                 "piyo",
                 null,
                 "")));
-        assertThat(list.addAll(0, Arrays.asList("test1")), is(false));
+        assertThat(list.addAll(0, Collections.singletonList("test1")), is(false));
         assertThat(list, is(Arrays.asList(
                 "hoge",
                 "fuga",

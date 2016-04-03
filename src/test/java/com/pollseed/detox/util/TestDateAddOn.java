@@ -6,15 +6,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
-import junit.framework.TestCase;
-
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-import util.DateAddOn;
-import util.DateAddOn.DateFormat;
+import com.pollseed.detox.util.DateAddOn.DateFormat;
 
-public class TestDateAddOn extends TestCase {
+public class TestDateAddOn {
 
     @Test
     public void test() {
